@@ -21,6 +21,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         InitializeGrid();
     }
 
+    // Initialize grid by instantiating cell objects
     void InitializeGrid()
     {
         for(int y = 0; y < dimensions; y++)
@@ -36,6 +37,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         StartCoroutine(CheckEntropy());
     }
 
+    // Sort out the cells with the lowest entropy (length of options)
     IEnumerator CheckEntropy()
     {
         List<Cell> tempGrid = new List<Cell>(gridComponents);
@@ -48,6 +50,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         CollapseCell(tempGrid);
     }
 
+    // Pick one ramdonly and collapse it by instantiating one random possible tile
     void CollapseCell(List<Cell> tempGrid)
     {
         int randIndex = UnityEngine.Random.Range(0, tempGrid.Count);
@@ -72,6 +75,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         UpdateGeneration();
     }
 
+    // Update tilesOptions for every cell
     void UpdateGeneration()
     {
         List<Cell> newGenerationCell = new List<Cell>(gridComponents);
@@ -178,6 +182,7 @@ public class WaveFunctionCollapse : MonoBehaviour
         }
     }
 
+    // check the validity of tiles in optionList and remove those invalid
     void CheckValidity(List<Tile> optionList, List<Tile> validOption)
     {
         for(int x = optionList.Count - 1; x >=0; x--)
